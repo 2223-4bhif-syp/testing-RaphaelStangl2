@@ -1,0 +1,74 @@
+= AssertJ
+
+:source-highlighter: coderay
+:source-language: java
+
+== Was ist AssertJ
+
+Es ist eine öffentliche community-geschriebene Library die für Java Tests geeignet ist.
+
+Außerdem stellt AssertJ eine Vielzahl von hilfreichen Fehlermeldungen zur Verfügung. Weiters verbessert es
+die Lesbarkeit des Test-Codes. Es wurde entwickelt um einfach und verständlich
+in jeder Entwicklungsumgebung benutzen zu werden.
+
+=== Integration mit Maven
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.assertj</groupId>
+    <artifactId>assertj-core</artifactId>
+    <version>3.4.1</version>
+</dependency>
+
+----
+
+=== Objektvergleich
+
+[source, java]
+----
+Pupil pupil1 = new Pupil("Max", "Mustermann", 32);
+Pupil pupil2 = new Pupil("Max", "Mustermann", 32);
+
+assertThat(pupil1).isEqualTo(pupil2);
+assertThat(pupil1).isEqualToComparingFieldByField(pupil2);
+----
+
+=== Datum
+
+[source, java]
+----
+LocalDate date = LocalDate.of(2024, 12, 1);
+
+assertThat(date).isAfter(LocalDate.now());
+assertThat(date).isBefore(LocalDate.now());
+assertThat(date).isEqualTo(LocalDate.now());
+----
+
+=== Datei
+
+[source, java]
+----
+File file1 = new File("file1.txt");
+File file2 = new File("file2.txt");
+
+assertThat(file1).exists();
+assertThat(file1).hasSameContentAs(file2);
+assertThat(file1).canRead();
+assertThat(file1).canWrite();
+----
+
+
+=== Stream
+
+[source, java]
+----
+ArrayList<Integer> list = new ArrayList<>();
+list.add(1);
+list.add(2);
+list.add(3);
+
+assertThat(list.stream()).contains(1);
+assertThat(list.stream()).isNotEmpty();
+assertThat(list.stream()).hasSize(3);
+----
